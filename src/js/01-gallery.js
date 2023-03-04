@@ -5,22 +5,10 @@ import { galleryItems } from './gallery-items';
 const galleryContainerEl = document.querySelector('.gallery');
 
 const items = galleryItems.map(item => {
+  return `<a class='gallery__link' href ='${item.original}'><img class='gallery__image' src='${item.preview}' alt='${item.description}' title='${item.description}' /></a>`;
+}).join('');
 
-    const galleryLink = document.createElement('a');
-    galleryLink.classList.add('gallery__link');
-    galleryLink.href = item.original;
-
-    const galleryImg = document.createElement('img');
-    galleryImg.classList.add('gallery__image');
-    galleryImg.src = item.preview;
-    galleryImg.alt = item.description;
-    galleryImg.title = item.description;
-    
-    galleryLink.append(galleryImg);
-    return galleryLink;  
-});
-
-galleryContainerEl.append(...items);
+galleryContainerEl.innerHTML = items;
 
 const lightbox = new SimpleLightbox(
     '.gallery a',
